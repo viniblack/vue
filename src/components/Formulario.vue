@@ -1,9 +1,31 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
+import CronometroHome from "./Cronometro.vue";
 
 export default defineComponent({
-    name: 'FormularioHome'
-})
+    name: "FormulárioHome",
+    components: {
+        CronometroHome
+    },
+    data() {
+        return {
+            tempoEmSegundos: 0,
+            cronometro: 0
+        }
+    },
+    methods: {
+        iniciar() {
+            // começar a contagem
+            // 1 seg = 1000 ms
+            this.cronometro = setInterval(() => {
+                this.tempoEmSegundos += 1
+            }, 1000)
+        },
+        finalizar() {
+            clearInterval(this.cronometro)
+        }
+    }
+});
 </script>
 
 <template>
@@ -14,18 +36,14 @@ export default defineComponent({
             </div>
             <div class="column">
                 <div class="is-flex is-align-items-center is-justify-content-space-between">
-                    <section>
-                        <strong>
-                            00:00:00
-                        </strong>
-                    </section>
-                    <button class="button">
+                    <CronometroHome :tempoEmSegundos="tempoEmSegundos"/>
+                    <button class="button" @click="iniciar">
                         <span class="icon">
                             <i class="fas fa-play"></i>
                         </span>
                         <span>play</span>
                     </button>
-                    <button class="button">
+                    <button class="button" @click="finalizar">
                         <span class="icon">
                             <i class="fas fa-stop"></i>
                         </span>
@@ -36,5 +54,4 @@ export default defineComponent({
         </div>
     </div>
 </template>
-
-<style></style>
+  
