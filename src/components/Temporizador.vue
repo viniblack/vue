@@ -5,7 +5,7 @@ import Botao from "./Botao.vue";
 
 export default defineComponent({
     name: "TemporizadorHome",
-    emits: ["aoTemporizadorFinalizado"],
+    emits: ["TemporizadorFinalizado"],
     components: {
         Cronometro,
         Botao
@@ -29,7 +29,7 @@ export default defineComponent({
         finalizar() {
             this.cronometroRodando = false
             clearInterval(this.cronometro)
-            this.$emit("aoTemporizadorFinalizado", this.tempoEmSegundos)
+            this.$emit("TemporizadorFinalizado", this.tempoEmSegundos)
             this.tempoEmSegundos = 0
         }
     }

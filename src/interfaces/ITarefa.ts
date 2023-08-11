@@ -1,4 +1,4 @@
-export default interface ITarefas {
+export default interface ITarefa {
     duracaoEmSegundos: number,
-    descricao: string,
-}
+    descricao: string
+  }
