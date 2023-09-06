@@ -1,0 +1,1 @@
+export const OBETER_PROJETOS = "OBTER_PROJETOS"
