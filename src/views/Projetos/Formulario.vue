@@ -4,8 +4,6 @@
       <div class="field">
         <label for="nomeDoProjeto" class="label"> Nome do Projeto </label>
         <input type="text" class="input" v-model="nomeDoProjeto" id="nomeDoProjet" />
-      </div>
-      <div class="field">
         <button class="button" type="submit">Salvar</button>
       </div>
     </form>
