@@ -9,7 +9,12 @@ import {
   EXCLUIR_PROJETO,
   NOTIFICAR,
 } from "./tipoMutacoes";
-import { OBETER_PROJETOS } from "./tipoAcoes";
+import {
+  ALTERAR_PROJETO,
+  CADASTRAR_PROJETO,
+  OBETER_PROJETOS,
+  REMOVER_PROJETO,
+} from "./tipoAcoes";
 import http from "@/http";
 
 interface Estado {
@@ -58,6 +63,19 @@ export const store = createStore<Estado>({
       http
         .get("projetos")
         .then((response) => commit(DEFINIR_PROJETO, response.data));
+    },
+    [CADASTRAR_PROJETO](contexto, nomeDoProjeto: string) {
+      return http.post("/projetos", {
+        nome: nomeDoProjeto,
+      });
+    },
+    [ALTERAR_PROJETO](contexto, projeto: IProjeto) {
+      return http.put(`/projetos/${projeto.id}`, projeto);
+    },
+    [REMOVER_PROJETO]({ commit }, id: string) {
+      return http
+        .delete(`/projetos/${id}`)
+        .then(() => commit(EXCLUIR_PROJETO, id));
     },
   },
 });
